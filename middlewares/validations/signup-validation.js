@@ -1,6 +1,6 @@
 import {body, validationResult} from 'express-validator'
 
-const profileValidators = [
+const signUpValidators = [
 
     body('userName')
     .isString().withMessage("user name should be string")
@@ -22,7 +22,7 @@ const profileValidators = [
 
 ]
 
-const profileValidate = async (req, res, next)=>{
+const signUpValidate = async (req, res, next)=>{
     const error = validationResult(req)
 
     if(!error.isEmpty()){
@@ -38,4 +38,4 @@ const profileValidate = async (req, res, next)=>{
 }
 
 
-export {profileValidators, profileValidate}
+export {signUpValidators, signUpValidate}

@@ -10,19 +10,21 @@ import { addSavedImage, removeSavedImage } from '../controllers/update-controlle
 import { addCreatedImages, removeCreatedImages } from '../controllers/update-controller/update-created-images.js'
 import updateUserProfile from '../controllers/update-controller/update-user-profile.js'
 
-import { profileValidators, profileValidate } from '../utils/validators/profile-validation.js'
-import { imageValidators, imageValidate } from '../utils/validators/image-validation.js'
+
+import { signInValidators, signInValidate } from '../middlewares/validations/signin-validation.js'
+import { signUpValidators, signUpValidate } from '../middlewares/validations/signup-validation.js'
+import { imageValidators, imageValidate } from '../middlewares/validations/image-validation.js'
 
 
-indexRouter.route('/signin').post(profileValidators, profileValidate, signInUser)
-indexRouter.route('/signup').post(profileValidators, profileValidate, signUpUser)
+indexRouter.route('/signin').post(signInValidators, signInValidate, signInUser)
+indexRouter.route('/signup').post(signUpValidators, signUpValidate, signUpUser)
 indexRouter.route('/getuser').post(getUser)
 indexRouter.route('/delete').post(deleteUser)
 indexRouter.route('/add-saved-img').post(imageValidators, imageValidate, addSavedImage)
 indexRouter.route('/remove-saved-img').post(imageValidators, imageValidate, removeSavedImage)
 indexRouter.route('/add-created-img').post(imageValidators, imageValidate, addCreatedImages)
 indexRouter.route('/remove-created-img').post(imageValidators, imageValidate, removeCreatedImages)
-indexRouter.route('/update-profile').post(profileValidators, profileValidate, updateUserProfile)
+indexRouter.route('/update-profile').post(updateUserProfile)
 
 
 export default indexRouter
