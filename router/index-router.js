@@ -15,10 +15,9 @@ import { signInValidators, signInValidate } from '../middlewares/validations/sig
 import { signUpValidators, signUpValidate } from '../middlewares/validations/signup-validation.js'
 import { imageValidators, imageValidate } from '../middlewares/validations/image-validation.js'
 
-
 indexRouter.route('/signin').post(signInValidators, signInValidate, signInUser)
 indexRouter.route('/signup').post(signUpValidators, signUpValidate, signUpUser)
-indexRouter.route('/getuser').post(getUser)
+indexRouter.route('/get-user').post(getUser)
 indexRouter.route('/delete').post(deleteUser)
 indexRouter.route('/add-saved-img').post(imageValidators, imageValidate, addSavedImage)
 indexRouter.route('/remove-saved-img').post(imageValidators, imageValidate, removeSavedImage)
