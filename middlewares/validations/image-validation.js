@@ -2,7 +2,7 @@ import {body, validationResult} from 'express-validator'
 
 const imageValidators = [
 
-    body("userId")
+    body("user_id")
     .isString().withMessage("user id must be a string")
     .notEmpty().withMessage("User id must not be empty"),
 

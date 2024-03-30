@@ -3,10 +3,10 @@ import UserModel from "../../schemas/user-schema.js";
 const addCreatedImages = async (req, res, next) => {
     try{
 
-        const {userId, image_id} = req.body
+        const {user_id, image_id} = req.body
 
         
-        const userExisted = await UserModel.findOne({userId})
+        const userExisted = await UserModel.findById(user_id)
 
         if(!userExisted)
         {
@@ -29,17 +29,19 @@ const addCreatedImages = async (req, res, next) => {
             throw err    
         }
 
+        const {userId} = userExisted
         const updatedData = await UserModel.findOneAndUpdate(
             {userId},
             {$push : {createdImages : image_id}},
             {new : true} )
 
-
+        console.log(updatedData)
         res.status(201).json({success : true, data : updatedData})
 
     }
     catch(error)
     {
+        console.log(error)
         const err = new Error()
         err.name = error.name || "ADD_IMAGE_FAILED"
         err.message = error.message || "Unable to add the image"
@@ -52,9 +54,9 @@ const addCreatedImages = async (req, res, next) => {
 const removeCreatedImages = async (req, res, next) => {
     try{
 
-        const {userId, image_id} = req.body
+        const {user_id, image_id} = req.body
 
-        const userExisted = await UserModel.findOne({userId})
+        const userExisted = await UserModel.findById(user_id)
 
         if(!userExisted)
         {
@@ -76,6 +78,7 @@ const removeCreatedImages = async (req, res, next) => {
             throw err    
         }
 
+        const {userId} = userExisted
         const updatedData = await UserModel.findOneAndUpdate(
             {userId},
             {$pull : {createdImages : image_id}},

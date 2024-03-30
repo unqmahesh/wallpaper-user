@@ -5,8 +5,8 @@ const getUser = async (req, res, next) => {
 
         const {userId} = req.body
 
-        // const userExisted = await UserModel.findOne({userId}).populate("savedImages")
-        const userExisted = await UserModel.findOne({userId})
+        const userExisted = await UserModel.findOne({userId}).populate("createdImages")
+        // const userExisted = await UserModel.findOne({userId})
 
         if(!userExisted){
             const err = new Error()

@@ -1,6 +1,8 @@
 
 const errorHandler = async(error, req, res, next) => {
 
+    console.log(error)
+
     error.name = error.name || "Internal_server_error"
     error.message = error.message || "Something went wrong"
     error.status = error.status || 500

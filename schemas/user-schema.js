@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 import crypto from 'crypto'
-
+import ImageModel from './image-schema.js'
 
 const userSchema = new mongoose.Schema({
     userId : {
@@ -29,13 +29,13 @@ const userSchema = new mongoose.Schema({
     savedImages : {
         type :  [
             {type : mongoose.Schema.Types.ObjectId,
-            ref : 'image'}
+            ref : 'Image'}
         ],
     },
     createdImages : {
         type :  [
             {type : mongoose.Schema.Types.ObjectId,
-            ref : 'image'}
+            ref : 'Image'}
         ],
     }
 }, {timestamps : true})
