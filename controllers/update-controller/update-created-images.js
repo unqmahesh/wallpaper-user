@@ -35,7 +35,6 @@ const addCreatedImages = async (req, res, next) => {
             {$push : {createdImages : image_id}},
             {new : true} )
 
-        console.log(updatedData)
         res.status(201).json({success : true, data : updatedData})
 
     }
